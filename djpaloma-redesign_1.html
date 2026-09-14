@@ -82,14 +82,15 @@
   .navlinks a:hover{color:var(--accent);}
   .navlinks a:hover::after{width:100%;}
   .book-btn{
-    background:#000000;color:#ffffff;
-    padding:11px 24px;font-weight:700;font-size:14px;border-radius:var(--radius);
+    background:var(--accent);color:#ffffff;
+    min-width:80px;padding:12px 12px;font-weight:800;font-size:15px;border-radius:var(--radius);text-align:center;
     border:none;outline:none;box-shadow:none;
     cursor:pointer;
     transition:background .2s, transform .2s;
   }
   .book-btn::after{display:none !important;}
-  .book-btn:hover{background:#222222;transform:translateY(-1px);}
+  .book-btn:hover{background:var(--accent-hover);transform:translateY(-1px);}
+  .navlinks a.book-btn{color:#ffffff;}
   .navtoggle{display:none;background:none;color:#000000;cursor:pointer;}
 
   /* ---------- hero ---------- */
@@ -102,7 +103,7 @@
   }
   .hero-photo{
     position:absolute;inset:0;
-    background-image:url('Images/background image(hero).jpg');
+    background-image:url('Images/hero.png');
     background-size:cover;
     background-position:right center;
     background-repeat:no-repeat;
@@ -122,12 +123,15 @@
   .eyebrow-bar{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
   .eyebrow-bar .dash{width:24px;height:2px;background:var(--accent);}
   .eyebrow-bar span{color:#ffffff;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
-  .slide h1{
-    font-size:clamp(38px,5.4vw,60px);
+  .slide strong{
+    display:block;
+    text-align:left;
+    font-size:clamp(30px,5.4vw,52px);
+    line-height:calc(1.08em - 5px);
     color:#ffffff;
-    font-weight:600;
+    font-weight:650;
   }
-  .slide h1 em{font-style:italic;color:#ffffff;font-weight:500;}
+  .slide strong em{font-style:italic;color:#ffffff;font-weight:500;}
   .slide p.lede{
     margin-top:20px;color:#d0d0d0;font-size:17px;line-height:1.65;max-width:480px;
   }
@@ -164,6 +168,11 @@
   .kicker .dash{width:20px;height:2px;background:var(--accent);}
   .section-head h2{font-size:clamp(30px,3.4vw,42px);color:var(--ink);}
   .section-head p{margin-top:16px;color:var(--muted);font-size:16px;line-height:1.7;}
+  #media{padding-top:55px;}
+  .audiomack-link{display:inline-flex;align-items:center;gap:18px;background:#ffffff;border:1px solid var(--line);padding:22px 28px;color:var(--ink);font-size:16px;font-weight:800;transition:background .2s,transform .2s;}
+  .audiomack-link:hover{background:#fff4f1;transform:translateY(-2px);}
+  .audiomack-link img{width:42px;height:42px;display:block;object-fit:contain;}
+  .audiomack-link svg{width:18px;height:18px;}
   .bg-cream{background:var(--cream);}
   .bg-violet{background:var(--dark-950);color:#e0e0e0;}
   .bg-violet .section-head h2{color:#ffffff;}
@@ -191,7 +200,8 @@
   }
   .portrait-tag strong{display:block;font-family:'Fraunces',serif;font-size:16px;font-weight:600;}
   .portrait-tag span{font-size:12.5px;color:#cccccc;}
-  .about-copy h3{font-size:26px;margin-bottom:18px;color:var(--ink);}
+  .about-copy .kicker{font-size:26px;}
+  .about-copy h3{font-size:16px;margin-bottom:18px;color:var(--ink);}
   .about-copy p{color:var(--muted);font-size:15.5px;line-height:1.75;margin-bottom:16px;}
   .mission-box{
     border-left:3px solid #000000;
@@ -209,7 +219,7 @@
   /* ---------- feature grid ---------- */
   .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   .feature-card{background:var(--paper);padding:38px 32px;transition:background .2s;}
-  .feature-card:hover{background:var(--cream);}
+  .feature-card:hover{background:rgba(248,7,7,0.12);}
   .feature-num{font-family:'Fraunces',serif;font-size:13px;color:#555555;font-weight:600;margin-bottom:18px;display:block;}
   .feature-card h4{font-size:18px;margin-bottom:10px;color:var(--ink);}
   .feature-card p{font-size:14.5px;color:var(--muted);line-height:1.6;}
@@ -298,6 +308,8 @@
     width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);
     color:#fff;padding:12px 14px;border-radius:4px;font-family:inherit;font-size:14px;
   }
+  .field select{background:#ffffff;color:#111111;}
+  .field select option{background:#ffffff;color:#111111;}
   .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#ffffff;}
   .field input::placeholder,.field textarea::placeholder{color:#777777;}
   .field textarea{resize:vertical;min-height:90px;}
@@ -317,8 +329,15 @@
   .award-card span{font-size:13px;color:var(--muted);}
   .press-strip{border-top:1px solid var(--line);padding-top:44px;}
   .press-strip span.label{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.02em;}
-  .press-logos{display:flex;gap:48px;margin-top:22px;flex-wrap:wrap;align-items:center;}
-  .press-logos span{font-family:'Fraunces',serif;font-size:19px;color:var(--ink);opacity:.65;font-weight:600;}
+  .press-carousel{display:flex;align-items:center;gap:14px;margin-top:22px;}
+  .press-viewport{overflow:hidden;flex:1;}
+  .press-logos{display:flex;gap:24px;align-items:center;transition:transform .35s ease;}
+  .press-logo{flex:0 0 calc((100% - 96px) / 5);display:flex;align-items:center;justify-content:center;min-width:0;}
+  .press-logos img{width:100%;height:48px;object-fit:contain;}
+  .press-arrow{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--ink);}
+  .press-arrow:hover{background:var(--cream);}
+  .press-arrow:disabled{opacity:.35;cursor:default;}
+  .press-arrow svg{width:16px;height:16px;}
 
   /* ---------- CTA banner ---------- */
   .cta-band{
@@ -412,6 +431,7 @@
     .stat-row{flex-wrap:wrap;gap:20px;}
     .stat{flex:0 0 45%;}
     .why-head{align-items:flex-start;}
+    .press-logo{flex-basis:calc((100% - 24px) / 2);}
   }
 </style>
 </head>
@@ -426,7 +446,6 @@
     <div class="navlinks" id="navlinks">
       <a href="#home">Home</a>
       <a href="#about">About</a>
-      <a href="#media">Media</a>
       <a href="#events">Events</a>
       <a href="#awards">Awards</a>
       <a href="#contact" class="book-btn">Book Now</a>
@@ -442,38 +461,13 @@
   <div class="hero-photo"></div>
   <div class="wrap">
     <div class="slide-track">
-      <div class="slide active" data-slide="0">
-        <div class="eyebrow-bar"><span class="dash"></span><span>Ghana's Gospel DJ</span></div>
-        <h1>Praise that moves <em>the room.</em><br>Worship that moves <em>the heart.</em></h1>
-        <p class="lede">DJ Paloma blends contemporary gospel, live praise breaks and timeless worship classics into a single unforgettable set — for churches, conferences and celebrations across Ghana.</p>
+      <div class="slide active">
+        <strong>Praise and Worship <br> That moves the room</strong>
+        <p class="lede">DJ Paloma blends contemporary gospel, live praise breaks and timeless worship classics into a single unforgettable set.</p>
         <div class="hero-ctas">
-          <a href="#contact" class="btn-primary">Book DJ Paloma</a>
-          <a href="#media" class="btn-ghost">Watch Performances</a>
+          <a href="#contact" class="btn-primary">Check availabilty</a>
         </div>
       </div>
-      <div class="slide" data-slide="1">
-        <div class="eyebrow-bar"><span class="dash"></span><span>For Churches &amp; Conferences</span></div>
-        <h1>Built for the <em>altar,</em><br>ready for <em>any stage.</em></h1>
-        <p class="lede">From Sunday morning services to national gospel festivals, every set is curated for the moment — reading the room and leading it straight into worship.</p>
-        <div class="hero-ctas">
-          <a href="#experience" class="btn-primary">See the Experience</a>
-          <a href="#events" class="btn-ghost">Upcoming Events</a>
-        </div>
-      </div>
-      <div class="slide" data-slide="2">
-        <div class="eyebrow-bar"><span class="dash"></span><span>Weddings &amp; Celebrations</span></div>
-        <h1>Your big day, <em>held</em><br>in good sound.</h1>
-        <p class="lede">A gospel foundation with room to celebrate — DJ Paloma keeps weddings and family celebrations joyful, faith-filled, and beautifully paced.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn-primary">Check Availability</a>
-          <a href="#awards" class="btn-ghost">Awards &amp; Press</a>
-        </div>
-      </div>
-    </div>
-    <div class="slide-dots" id="slideDots">
-      <button class="active" data-dot="0"></button>
-      <button data-dot="1"></button>
-      <button data-dot="2"></button>
     </div>
   </div>
 </section>
@@ -500,19 +494,19 @@
         </div>
       </div>
       <div class="about-copy">
-        <div class="kicker"><span class="dash"></span>Get to Know DJ Paloma</div>
+        <div class="kicker"></span>Get to Know DJ Paloma</div>
         <h3>A journey of faith, carried through music</h3>
         <p>DJ Paloma is one of Ghana's most sought-after Gospel DJs, known for creating praise and worship experiences that bring congregations and communities together in faith. Years of spinning at churches, conferences and national gospel events have shaped a signature style: contemporary gospel hits woven seamlessly with timeless worship classics.</p>
-        <p>Every set is built around one goal — creating a space where hearts are lifted and God is glorified.</p>
+       <p>Every set is built around one goal creating a space where hearts are lifted and God is glorified.</p>
         <div class="mission-box">
           <span>Mission</span>
-          <p>To use music as a tool for worship — spreading the gospel message and creating faith-driven experiences that glorify God, one event at a time.</p>
+          <p>To use music as a tool for worship, spreading the gospel message and creating faith-driven experiences that glorify God, one event at a time.</p>
         </div>
         <div class="stat-row">
-          <div class="stat"><strong>180+</strong><span>Events played</span></div>
-          <div class="stat"><strong>60+</strong><span>Churches served</span></div>
-          <div class="stat"><strong>12</strong><span>Cities reached</span></div>
-          <div class="stat"><strong>7</strong><span>Years active</span></div>
+          <div class="stat"><strong>500+</strong><span>Events played</span></div>
+          <div class="stat"><strong>100+</strong><span>Churches served</span></div>
+          <div class="stat"><strong>15</strong><span>Cities reached</span></div>
+          <div class="stat"><strong>9</strong><span>Years active</span></div>
         </div>
       </div>
     </div>
@@ -523,9 +517,8 @@
 <section class="bg-cream" id="experience">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker"><span class="dash"></span>What's Included</div>
-      <h2>The DJ Paloma experience</h2>
-      <p>Every booking is built around your event, not a fixed playlist — here's what shapes each performance.</p>
+      <h2>The DJ Paloma Experience</h2>
+      <p>Every booking is built around your event, not a fixed playlisthere's what shapes each performance.</p>
     </div>
     <div class="feature-grid">
       <div class="feature-card">
@@ -562,51 +555,17 @@
   </div>
 </section>
 
-<!-- ================= MEDIA (why-us style 3 cards) ================= -->
+<!-- ================= MEDIA ================= -->
 <section id="media">
   <div class="wrap">
-    <div class="why-head">
-      <div class="section-head" style="margin-bottom:0;">
-        <div class="kicker"><span class="dash"></span>Experience the Energy</div>
-        <h2>Media &amp; gospel mixes</h2>
-      </div>
-      <a href="https://instagram.com/gh.djpaloma" class="why-link">Follow @gh.djpaloma <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="section-head" style="margin-bottom:32px;">
+      <h2>Media &amp; Gospel mixes</h2>
     </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-media main-photo">
-          <div class="play-ring"></div>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="why-body">
-          <h4>Praise &amp; Worship Mix, Vol. 1</h4>
-          <p>An hour of contemporary praise blended into unbroken worship flow.</p>
-          <a href="#" class="why-link">Listen Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-media alt1">
-          <div class="play-ring"></div>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="why-body">
-          <h4>Sunday Morning Vibes</h4>
-          <p>Gentle, reflective worship built for early-service congregations.</p>
-          <a href="#" class="why-link">Listen Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-media alt2">
-          <div class="play-ring"></div>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="why-body">
-          <h4>Contemporary Gospel Hits</h4>
-          <p>Upbeat praise for youth nights, festivals and celebrations.</p>
-          <a href="#" class="why-link">Listen Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-    </div>
+    <a class="audiomack-link" href="https://audiomack.com/invites/37723125" target="_blank" rel="noopener noreferrer">
+      <img src="Images/audiomack.jpg" alt="Audiomack logo">
+      <span>Listen to the playlist on Audiomack</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
@@ -614,9 +573,9 @@
 <section class="bg-violet">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker"><span class="dash"></span>Event Highlights</div>
+      <div class="kicker">Event Highlights</div>
       <h2>Moments from the field</h2>
-      <p>A glimpse of DJ Paloma live — from Christmas services to radio features across Ghana.</p>
+      <p>A glimpse of DJ Paloma live from Christmas services to radio features across Ghana.</p>
     </div>
     <div class="highlights-grid">
       <a href="https://instagram.com/gh.djpaloma">
@@ -643,9 +602,8 @@
 <section class="bg-cream" id="events">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker"><span class="dash"></span>Where to Find Me</div>
-      <h2>Events &amp; bookings</h2>
-      <p>A look at where DJ Paloma is playing next — and how to lock in your own date.</p>
+      <h2>Events &amp; Bookings</h2>
+      <p>A look at where DJ Paloma is playing next and how to lock in your own date.</p>
     </div>
     <div class="events-tabs">
       <span class="tab-btn active">Upcoming Events</span>
@@ -716,8 +674,7 @@
 <section id="awards">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker"><span class="dash"></span>Recognition</div>
-      <h2>Awards &amp; press</h2>
+      <h2>Awards &amp; Press</h2>
     </div>
     <div class="awards-grid">
       <div class="award-card">
@@ -738,8 +695,26 @@
     </div>
     <div class="press-strip">
       <span class="label">Featured In</span>
-      <div class="press-logos">
-        <span>Joy FM</span><span>Peace FM</span><span>GHOne TV</span><span>Gospel News</span>
+      <div class="press-carousel">
+        <button class="press-arrow" id="pressPrev" type="button" aria-label="Previous featured brands" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="press-viewport" id="pressViewport">
+          <div class="press-logos" id="pressLogos">
+            <div class="press-logo"><img src="Images/featured/mtnlogo.png" alt="MTN"></div>
+            <div class="press-logo"><img src="Images/featured/aglow-ghana.png" alt="Aglow Ghana"></div>
+            <div class="press-logo"><img src="Images/featured/omnibisc-bank.png" alt="Omnibisc Bank"></div>
+            <div class="press-logo"><img src="Images/featured/ofi-ghana.png" alt="OFI Ghana"></div>
+            <div class="press-logo"><img src="Images/featured/Praise-tv.png" alt="Praise TV"></div>
+            <div class="press-logo"><img src="Images/featured/hitz-fm.png" alt="Hitz FM"></div>
+            <div class="press-logo"><img src="Images/featured/zylofon-media.png" alt="Zylofon Media"></div>
+            <div class="press-logo"><img src="Images/featured/kristocentric.png" alt="Kristocentric"></div>
+            <div class="press-logo"><img src="Images/featured/footprint-tv.png" alt="Footprint TV"></div>
+          </div>
+        </div>
+        <button class="press-arrow" id="pressNext" type="button" aria-label="Next featured brands">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -749,8 +724,8 @@
 <section class="cta-band">
   <div class="wrap cta-inner">
     <div>
-      <h2>Ready to bring worship to your next event?</h2>
-      <p>From Sunday service to a national gospel festival — let's build a set that fits the moment.</p>
+      <h2>Ready to bring worship <br> to your next event?</h2>
+      <p>From Sunday service to a National Gospel Festival, <br> let's build a set that fits the moment.</p>
     </div>
     <a href="#contact" class="btn-primary">Start Your Booking</a>
   </div>
@@ -760,9 +735,8 @@
 <section class="bg-cream" id="contact">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker"><span class="dash"></span>Let's Connect</div>
       <h2>Get in touch</h2>
-      <p>Ready to book DJ Paloma for your next event? Reach out and we'll follow up within a day.</p>
+      <p>Ready to book DJ Paloma for your next event? <br> Reach out and we'll follow up within a day.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-cards">
@@ -821,8 +795,9 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 DJ Paloma. All rights reserved.</span>
-      <span>Designed for Ghana's gospel community</span>
+      <span>© 2026 DJ Paloma. All Rights Reserved.</span>
+      <span>Designed for Ghana's Gospel Community</span>
+      <span>Built by Branded By Winni</span>
     </div>
   </div>
 </footer>
@@ -832,23 +807,23 @@
 </button>
 
 <script>
-  // hero slider
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('#slideDots button');
-  let current = 0;
-  function goTo(i){
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = i;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-  }
-  dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
-  setInterval(()=>{ goTo((current+1)%slides.length); }, 6500);
-
   // ticker duplicate for seamless loop
   const ticker = document.getElementById('tickerInner');
   ticker.innerHTML += ticker.innerHTML;
+
+  // featured brands carousel
+  const pressViewport = document.getElementById('pressViewport');
+  const pressPrev = document.getElementById('pressPrev');
+  const pressNext = document.getElementById('pressNext');
+  function updatePressArrows(){
+    pressPrev.disabled = pressViewport.scrollLeft <= 1;
+    pressNext.disabled = pressViewport.scrollLeft + pressViewport.clientWidth >= pressViewport.scrollWidth - 1;
+  }
+  pressPrev.addEventListener('click',()=>pressViewport.scrollBy({left:-pressViewport.clientWidth,behavior:'smooth'}));
+  pressNext.addEventListener('click',()=>pressViewport.scrollBy({left:pressViewport.clientWidth,behavior:'smooth'}));
+  pressViewport.addEventListener('scroll',updatePressArrows);
+  window.addEventListener('resize',updatePressArrows);
+  updatePressArrows();
 
   // mobile nav
   const navtoggle = document.getElementById('navtoggle');
