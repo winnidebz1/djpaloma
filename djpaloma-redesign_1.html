@@ -410,6 +410,12 @@
     .booking-panel{grid-template-columns:1fr;padding:36px;}
   }
   @media(max-width:760px){
+    .hero{min-height:540px;}
+    .hero .wrap{padding-top:56px;padding-bottom:56px;}
+    .hero-photo{background-position:center center;}
+    .slide strong{font-size:clamp(30px,9vw,42px);line-height:1.02;}
+    .slide p.lede{font-size:15px;line-height:1.55;}
+    .hero-ctas{gap:10px;margin-top:26px;}
     .navlinks{
       position:fixed;top:78px;left:0;right:0;
       background:#ffffff;
@@ -422,6 +428,7 @@
     }
     .navlinks.open{transform:translateY(0);}
     .navlinks a{color:#000000;font-size:16px;}
+    .navlinks a.book-btn{width:100%;text-align:center;}
     .navtoggle{display:block;}
     .feature-grid,.why-grid,.awards-grid{grid-template-columns:1fr;}
     .footer-top{grid-template-columns:1fr;}
