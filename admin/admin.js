@@ -92,9 +92,28 @@ async function renderResource(table) {
   const isSingleton = ['homepage_content', 'site_settings'].includes(table);
   $('#resourcePanel').innerHTML = `<div class="section-toolbar"><h2>${sections.find(([key]) => key === table)[1]}</h2>${isSingleton ? '' : '<button class="button primary" id="newRecord">Add new</button>'}</div><form class="editor hidden" id="editor">${fields.map((field) => fieldMarkup(field)).join('')}<div class="editor-actions full"><button class="button primary">Save</button><button class="text-button" type="button" id="cancelEdit">Cancel</button><input type="hidden" name="id"></div></form><div class="content-card"><table class="data-table"><thead><tr>${fields.slice(0,4).map(([,label]) => `<th>${label}</th>`).join('')}<th>Actions</th></tr></thead><tbody>${(data || []).map((row) => `<tr>${fields.slice(0,4).map(([key]) => `<td>${escapeHtml(row[key])}</td>`).join('')}<td><div class="table-actions"><button class="small-button" data-edit="${row.id}">Edit</button>${canArchive ? `<button class="small-button danger" data-delete="${row.id}">Archive</button>` : ''}</div></td></tr>`).join('') || '<tr><td colspan="5">No records yet.</td></tr>'}</tbody></table></div>`;
   const editor = $('#editor');
+  if (isSingleton && data?.[0]) {
+    editor.classList.remove('hidden');
+    fields.forEach(([key]) => {
+      const input = editor.elements[key];
+      if (input) input.value = data[0][key] ?? '';
+    });
+    editor.elements.id.value = 'singleton';
+  }
   if (!isSingleton) $('#newRecord').addEventListener('click', () => { editor.classList.remove('hidden'); editor.reset(); });
   $('#cancelEdit').addEventListener('click', () => editor.classList.add('hidden'));
-  editor.addEventListener('submit', async (event) => { event.preventDefault(); const payload = Object.fromEntries(new FormData(editor)); const id = payload.id; delete payload.id; const result = id ? await client.from(table).update(payload).eq('id', id) : await client.from(table).insert(payload); if (result.error) return showError(result.error.message); notify('Changes saved'); renderResource(table); });
+  editor.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const payload = Object.fromEntries(new FormData(editor));
+    const id = payload.id;
+    delete payload.id;
+    const result = isSingleton
+      ? await client.from(table).update(payload).eq('id', true)
+      : id ? await client.from(table).update(payload).eq('id', id) : await client.from(table).insert(payload);
+    if (result.error) return showError(result.error.message);
+    notify('Changes saved');
+    renderResource(table);
+  });
   editor.querySelector('[name="id"]').value = '';
   $('#resourcePanel').querySelectorAll('[data-edit]').forEach((button) => button.addEventListener('click', () => { const row = data.find((item) => item.id === button.dataset.edit); editor.classList.remove('hidden'); fields.forEach(([key]) => { const input = editor.elements[key]; if (input) input.value = row[key] ?? ''; }); editor.elements.id.value = row.id; }));
   $('#resourcePanel').querySelectorAll('[data-delete]').forEach((button) => button.addEventListener('click', async () => { if (!confirm('Archive this record?')) return; const result = await client.from(table).update({ status: 'archived' }).eq('id', button.dataset.delete); if (result.error) return showError(result.error.message); renderResource(table); }));
