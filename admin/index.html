@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DJ Paloma Admin</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main id="loginView" class="login-view">
+    <form id="loginForm" class="login-card">
+      <img src="../Images/logo.png.png" alt="DJ Paloma">
+      <p class="eyebrow">Private workspace</p>
+      <h1>Welcome back</h1>
+      <p class="muted">Sign in to manage the live website.</p>
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="button primary" type="submit">Sign in</button>
+      <button class="text-button" id="forgotPassword" type="button">Forgot password?</button>
+      <p class="form-message" id="loginMessage" role="alert"></p>
+    </form>
+  </main>
+
+  <div id="appView" class="app-view hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand"><img src="../Images/logo.png.png" alt="DJ Paloma"></div>
+      <nav id="adminNav" aria-label="Admin sections"></nav>
+      <button id="logoutButton" class="logout-button">Log out</button>
+    </aside>
+    <section class="workspace">
+      <header class="workspace-header">
+        <div><p class="eyebrow">DJ Paloma CMS</p><h1 id="pageTitle">Dashboard</h1></div>
+        <span id="adminEmail" class="user-pill"></span>
+      </header>
+      <div id="toast" class="toast" role="status"></div>
+      <div id="dashboardPanel" class="panel"></div>
+      <div id="resourcePanel" class="panel hidden"></div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
