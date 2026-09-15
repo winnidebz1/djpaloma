@@ -74,10 +74,14 @@ async function renderDashboard() {
   $('#dashboardPanel').querySelectorAll('[data-quick]').forEach((button) => button.addEventListener('click', () => showSection(button.dataset.quick)));
 }
 
-function fieldMarkup([key, label, type], value = '') {
+function fieldMarkup([key, label, type], value = '', table = '') {
   if (type === 'textarea') return `<label class="${key === 'description' ? 'full' : ''}">${label}<textarea name="${key}">${escapeHtml(value)}</textarea></label>`;
   if (type === 'select') {
-    const options = key === 'status' && label === 'Status' && document.querySelector('[data-section="bookings"]') ? ['new','contacted','follow_up','quoted','confirmed','completed','cancelled'] : ['draft','published','archived'];
+    const options = table === 'bookings' && key === 'status'
+      ? ['new','contacted','follow_up','quoted','confirmed','completed','cancelled']
+      : table === 'events' && key === 'status'
+        ? ['upcoming','past','cancelled','draft']
+        : ['draft','published','archived'];
     return `<label>${label}<select name="${key}">${options.map((option) => `<option value="${option}" ${value === option ? 'selected' : ''}>${option.replace('_',' ')}</option>`).join('')}</select></label>`;
   }
   return `<label>${label}<input name="${key}" type="${type}" value="${escapeHtml(value)}"></label>`;
@@ -90,7 +94,7 @@ async function renderResource(table) {
   const fields = definitions[table];
   const canArchive = !['homepage_content', 'site_settings'].includes(table);
   const isSingleton = ['homepage_content', 'site_settings'].includes(table);
-  $('#resourcePanel').innerHTML = `<div class="section-toolbar"><h2>${sections.find(([key]) => key === table)[1]}</h2>${isSingleton ? '' : '<button class="button primary" id="newRecord">Add new</button>'}</div><form class="editor hidden" id="editor">${fields.map((field) => fieldMarkup(field)).join('')}<div class="editor-actions full"><button class="button primary">Save</button><button class="text-button" type="button" id="cancelEdit">Cancel</button><input type="hidden" name="id"></div></form><div class="content-card"><table class="data-table"><thead><tr>${fields.slice(0,4).map(([,label]) => `<th>${label}</th>`).join('')}<th>Actions</th></tr></thead><tbody>${(data || []).map((row) => `<tr>${fields.slice(0,4).map(([key]) => `<td>${escapeHtml(row[key])}</td>`).join('')}<td><div class="table-actions"><button class="small-button" data-edit="${row.id}">Edit</button>${canArchive ? `<button class="small-button danger" data-delete="${row.id}">Archive</button>` : ''}</div></td></tr>`).join('') || '<tr><td colspan="5">No records yet.</td></tr>'}</tbody></table></div>`;
+  $('#resourcePanel').innerHTML = `<div class="section-toolbar"><h2>${sections.find(([key]) => key === table)[1]}</h2>${isSingleton ? '' : '<button class="button primary" id="newRecord">Add new</button>'}</div><form class="editor hidden" id="editor">${fields.map((field) => fieldMarkup(field, '', table)).join('')}<div class="editor-actions full"><button class="button primary">Save</button><button class="text-button" type="button" id="cancelEdit">Cancel</button><input type="hidden" name="id"></div></form><div class="content-card"><table class="data-table"><thead><tr>${fields.slice(0,4).map(([,label]) => `<th>${label}</th>`).join('')}<th>Actions</th></tr></thead><tbody>${(data || []).map((row) => `<tr>${fields.slice(0,4).map(([key]) => `<td>${escapeHtml(row[key])}</td>`).join('')}<td><div class="table-actions"><button class="small-button" data-edit="${row.id}">Edit</button>${canArchive ? `<button class="small-button danger" data-delete="${row.id}">Archive</button>` : ''}</div></td></tr>`).join('') || '<tr><td colspan="5">No records yet.</td></tr>'}</tbody></table></div>`;
   const editor = $('#editor');
   if (isSingleton && data?.[0]) {
     editor.classList.remove('hidden');
