@@ -77,6 +77,9 @@ function applySettings(settings, socials = []) {
     const value = [settings.primary_phone, settings.primary_email, settings.location][index];
     if (value) element.textContent = value;
   });
-  const whatsapp = socials.find((item) => item.label.toLowerCase() === 'whatsapp');
-  if (whatsapp) document.querySelectorAll('a[href*="wa.me"]').forEach((link) => link.href = whatsapp.url);
+  socials.forEach((social) => {
+    const key = social.label.toLowerCase().replace(/\s+/g, '-');
+    document.querySelectorAll(`[data-social="${key}"]`).forEach((link) => link.href = social.url);
+    if (key === 'whatsapp') document.querySelectorAll('a[href*="wa.me"]').forEach((link) => link.href = social.url);
+  });
 }

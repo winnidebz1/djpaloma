@@ -37,9 +37,20 @@ insert into public.services (title, short_description, number, display_order) va
 insert into public.navigation_items (label, href, display_order, is_cta) values
   ('Home', '#home', 1, false), ('About', '#about', 2, false), ('Events', '#events', 3, false), ('Awards', '#awards', 4, false), ('Book Now', '#contact', 5, true);
 
-insert into public.social_links (label, url, icon, display_order) values
-  ('Instagram', 'https://instagram.com/gh.djpaloma', 'instagram', 1),
-  ('WhatsApp', 'https://wa.me/233244621771', 'whatsapp', 2);
+update public.social_links set url = 'https://www.instagram.com/gh.djpaloma?igsi=ZG5paXJrdHdpbzBl&utm_source=qr' where lower(label) = 'instagram';
+update public.social_links set url = 'https://wa.me/233244621771' where lower(label) = 'whatsapp';
+insert into public.social_links (label, url, icon, display_order)
+select 'Instagram', 'https://www.instagram.com/gh.djpaloma?igsi=ZG5paXJrdHdpbzBl&utm_source=qr', 'instagram', 1
+where not exists (select 1 from public.social_links where lower(label) = 'instagram');
+insert into public.social_links (label, url, icon, display_order)
+select 'WhatsApp', 'https://wa.me/233244621771', 'whatsapp', 2
+where not exists (select 1 from public.social_links where lower(label) = 'whatsapp');
+insert into public.social_links (label, url, icon, display_order)
+select 'Facebook', 'https://www.facebook.com/share/18Fyb2TFLQ/?mibextid=wwXIfr', 'facebook', 3
+where not exists (select 1 from public.social_links where lower(label) = 'facebook');
+insert into public.social_links (label, url, icon, display_order)
+select 'TikTok', 'https://www.tiktok.com/@djpalomagh3?_r=1&_t=ZS-99SXCGdmMx3', 'tiktok', 4
+where not exists (select 1 from public.social_links where lower(label) = 'tiktok');
 
 insert into public.awards (name, organization, award_year, display_order) values
   ('Gospel DJ of the Year', 'Ghana Gospel Music Awards', 2024, 1),
