@@ -9,7 +9,8 @@
 
     const formatHeadline = (text) => text ? text.replace(/moves the room/gi, 'Moves the Room') : text;
     setText('.slide strong', formatHeadline(home.hero_headline));
-    setText('.slide p.lede', home.hero_description);
+    const formatDescription = (text) => text ? text.replace(/live praise breaks and timeless/gi, 'live praise breaks, urban gospel and timeless') : text;
+    setText('.slide p.lede', formatDescription(home.hero_description));
     setText('.hero-ctas .btn-primary', home.hero_primary_cta);
     setLink('.hero-ctas .btn-primary', home.hero_primary_link);
     setText('.about-copy .kicker', home.about_label);
