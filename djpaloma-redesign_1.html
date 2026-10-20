@@ -308,14 +308,230 @@
   }
   .submit-btn:hover{background:#e6e6e6;}
 
-  /* ---------- awards ---------- */
-  .awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:70px;}
-  .award-card{
-    background:var(--paper);border:1px solid var(--line);padding:34px 28px;text-align:left;border-radius:4px;position:relative;
+  /* ---------- awards & press (editorial redesign) ---------- */
+  #awards {
+    background: #FAF8F0;
+    color: #171717;
+    padding: 110px 0;
   }
-  .award-card svg{width:30px;height:30px;color:#000000;margin-bottom:20px;}
-  .award-card h4{font-size:17px;margin-bottom:8px;}
-  .award-card span{font-size:13px;color:var(--muted);}
+  .awards-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 52px auto;
+  }
+  .awards-gold-dash {
+    width: 48px;
+    height: 2px;
+    background: #C4943D;
+    margin: 0 auto 16px auto;
+  }
+  .awards-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 3.8vw, 44px);
+    font-weight: 600;
+    color: #171717;
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .awards-subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    color: #555555;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .awards-showcase {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 72px;
+  }
+  .awards-photo-col {
+    position: sticky;
+    top: 96px;
+  }
+  .awards-photo-frame {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111111;
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.08);
+  }
+  .awards-real-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.4s ease;
+  }
+  .awards-photo-frame:hover .awards-real-img {
+    transform: scale(1.015);
+  }
+  .awards-history-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .awards-category-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .awards-cat-title {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: #171717;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .awards-cat-divider {
+    border: none;
+    height: 1px;
+    background: #C4943D;
+    opacity: 0.35;
+    margin: 26px 0;
+  }
+  .award-editorial-card {
+    background: #ffffff;
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: default;
+  }
+  .award-editorial-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(196, 148, 61, 0.45);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+  }
+  .award-editorial-card:focus-visible {
+    outline: 2px solid #C4943D;
+    outline-offset: 2px;
+  }
+  .award-badge-circle {
+    width: 62px;
+    height: 62px;
+    min-width: 62px;
+    border-radius: 50%;
+    background: #111111;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .award-vert-line {
+    width: 1px;
+    height: 44px;
+    background: #C4943D;
+    opacity: 0.55;
+    flex-shrink: 0;
+  }
+  .award-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .award-text-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #171717;
+    margin: 0;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .award-text-org {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    color: #555555;
+    margin: 0;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+  }
+  #awards .press-strip {
+    border-top: 1px solid rgba(196, 148, 61, 0.3);
+    padding-top: 44px;
+  }
+  #awards .press-strip span.label {
+    font-size: 12.5px;
+    color: #666666;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  #awards .press-arrow {
+    border: 1px solid rgba(23, 23, 23, 0.12);
+    background: #ffffff;
+    color: #171717;
+  }
+  #awards .press-arrow:hover {
+    background: #eae6da;
+  }
+  @media (max-width: 980px) {
+    .awards-showcase {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .awards-photo-col {
+      position: static;
+    }
+    .awards-photo-frame {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+  }
+  @media (max-width: 600px) {
+    #awards {
+      padding: 70px 0;
+    }
+    .awards-header {
+      margin-bottom: 36px;
+    }
+    .awards-title {
+      font-size: 28px;
+    }
+    .awards-subtitle {
+      font-size: 14.5px;
+      margin-top: 10px;
+    }
+    .award-editorial-card {
+      padding: 13px 15px;
+      gap: 14px;
+    }
+    .award-badge-circle {
+      width: 54px;
+      height: 54px;
+      min-width: 54px;
+      font-size: 15px;
+    }
+    .award-vert-line {
+      height: 38px;
+    }
+    .award-text-title {
+      font-size: 15.5px;
+    }
+    .award-text-org {
+      font-size: 12px;
+    }
+  }
   .press-strip{border-top:1px solid var(--line);padding-top:44px;}
   .press-strip span.label{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.02em;}
   .press-carousel{display:flex;align-items:center;gap:14px;margin-top:22px;}
@@ -669,29 +885,95 @@
   </div>
 </section>
 
-<!-- ================= AWARDS ================= -->
+<!-- ================= AWARDS & PRESS ================= -->
 <section id="awards">
   <div class="wrap">
-    <div class="section-head">
-      <h2>Awards &amp; Press</h2>
+    <div class="awards-header">
+      <div class="awards-gold-dash" aria-hidden="true"></div>
+      <h2 class="awards-title">Awards &amp; Press</h2>
+      <p class="awards-subtitle">Celebrating milestones, music, and impact.</p>
     </div>
-    <div class="awards-grid">
-      <div class="award-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>
-        <h4>Gospel DJ of the Year</h4>
-        <span>Ghana Gospel Music Awards, 2024</span>
+
+    <div class="awards-showcase">
+      <!-- Left: Large Awards Photograph (~60%) -->
+      <div class="awards-photo-col">
+        <div class="awards-photo-frame">
+          <img src="Images/awards.PNG" alt="DJ Paloma official award trophies and plaques including GUGMA, Ghana DJs Awards, and Praise Achievement Awards" class="awards-real-img" loading="lazy">
+        </div>
       </div>
-      <div class="award-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>
-        <h4>Best Male DJ</h4>
-        <span>Ghana DJ Awards, 2023</span>
-      </div>
-      <div class="award-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>
-        <h4>Excellence in Gospel Music</h4>
-        <span>Christian Music Awards, 2023</span>
+
+      <!-- Right: Awards History (~40%) -->
+      <div class="awards-history-col">
+
+        <!-- Category 1: GUGMA -->
+        <div class="awards-category-block">
+          <h3 class="awards-cat-title">Ghana Urban Gospel Music Awards (GUGMA)</h3>
+
+          <div class="award-editorial-card" tabindex="0">
+            <div class="award-badge-circle">2020</div>
+            <div class="award-vert-line" aria-hidden="true"></div>
+            <div class="award-text-group">
+              <h4 class="award-text-title">DJ of the Year</h4>
+              <p class="award-text-org">Ghana Urban Gospel Music Awards (GUGMA)</p>
+            </div>
+          </div>
+
+          <div class="award-editorial-card" tabindex="0">
+            <div class="award-badge-circle">2021</div>
+            <div class="award-vert-line" aria-hidden="true"></div>
+            <div class="award-text-group">
+              <h4 class="award-text-title">DJ of the Year</h4>
+              <p class="award-text-org">Ghana Urban Gospel Music Awards (GUGMA)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider between Categories -->
+        <hr class="awards-cat-divider" aria-hidden="true">
+
+        <!-- Category 2: Ghana DJs Awards -->
+        <div class="awards-category-block">
+          <h3 class="awards-cat-title">Ghana DJs Awards</h3>
+
+          <div class="award-editorial-card" tabindex="0">
+            <div class="award-badge-circle">2023</div>
+            <div class="award-vert-line" aria-hidden="true"></div>
+            <div class="award-text-group">
+              <h4 class="award-text-title">Gospel DJ of the Year</h4>
+              <p class="award-text-org">Ghana DJs Awards</p>
+            </div>
+          </div>
+
+          <div class="award-editorial-card" tabindex="0">
+            <div class="award-badge-circle">2024</div>
+            <div class="award-vert-line" aria-hidden="true"></div>
+            <div class="award-text-group">
+              <h4 class="award-text-title">Gospel DJ of the Year</h4>
+              <p class="award-text-org">Ghana DJs Awards</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider between Categories -->
+        <hr class="awards-cat-divider" aria-hidden="true">
+
+        <!-- Category 3: Praise Achievement Awards -->
+        <div class="awards-category-block">
+          <h3 class="awards-cat-title">Praise Achievement Awards</h3>
+
+          <div class="award-editorial-card" tabindex="0">
+            <div class="award-badge-circle">2023</div>
+            <div class="award-vert-line" aria-hidden="true"></div>
+            <div class="award-text-group">
+              <h4 class="award-text-title">DJ of the Year</h4>
+              <p class="award-text-org">Praise Achievement Awards</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+
     <div class="press-strip">
       <span class="label">Featured In</span>
       <div class="press-carousel">
