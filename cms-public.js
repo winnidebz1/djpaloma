@@ -17,7 +17,8 @@
     setText('.about-copy h3', home.about_heading);
     if (home.about_description) setText('.about-copy > p', home.about_description);
     setText('.mission-box p', home.mission);
-    setText('.cta-band h2', home.cta_heading);
+    const formatCtaHeading = (text) => text ? text.replace(/Ready to bring worship to your next event\?/gi, 'Ready to bring professional & Holy vibes to your next event?') : text;
+    setText('.cta-band h2', formatCtaHeading(home.cta_heading));
     setText('.cta-band p', home.cta_description);
 
     if (content.statistics?.length) {
