@@ -7,7 +7,8 @@
     const setText = (selector, value) => { if (value) document.querySelector(selector)?.replaceChildren(document.createTextNode(value)); };
     const setLink = (selector, value) => { if (value) document.querySelector(selector)?.setAttribute('href', value); };
 
-    setText('.slide strong', home.hero_headline);
+    const formatHeadline = (text) => text ? text.replace(/moves the room/gi, 'Moves the Room') : text;
+    setText('.slide strong', formatHeadline(home.hero_headline));
     setText('.slide p.lede', home.hero_description);
     setText('.hero-ctas .btn-primary', home.hero_primary_cta);
     setLink('.hero-ctas .btn-primary', home.hero_primary_link);
